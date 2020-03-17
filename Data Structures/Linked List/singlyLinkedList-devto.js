@@ -116,4 +116,50 @@ class LinkedList {
     return current;
   }
 
+  /**
+   *  
+   *  The index we want to delete is outside the bounds of the list
+      The list is empty
+      We want to delete the head
+   */
+
+  delete(index) {
+    if (index < 0 || index > this.length) {
+      return null;
+    }
+
+    if (this.isEmpty()) {
+      return null;
+    }
+
+    if (index === 0) {
+      const nodeToDelete = this.head;
+      this.head = this.head.next;
+      this.length--;
+      return nodeToDelete;
+    }
+
+    let current = this.head;
+    let previous;
+    let iterator = 0;
+
+    while (iterator < index) {
+      iterator++;
+      previous = current;
+      current = current.next;
+    }
+
+    const nodeToDelete = current;
+
+    // redirect pointer to skip the element we are deleting
+    previous.next = current.next;
+
+    // we are at the end
+    if (previous.next === null) {
+      this.tail = previous;
+    }
+
+    this.length--;
+    return nodeToDelete;
+  }
 }
