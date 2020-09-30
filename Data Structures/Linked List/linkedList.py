@@ -23,9 +23,8 @@ class LinkedList:
 
     def insert_head(self, data) -> None:
         new_node = Node(data)  # create a new node
-        if self.head:
-            new_node.next = self.head  # link new node to head
-        self.head = new_node  # make new node as head
+        new_node.next = self.head
+        self.head = new_node
 
     def print_list(self) -> None:
         temp = self.head
